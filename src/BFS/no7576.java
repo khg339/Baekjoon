@@ -22,6 +22,7 @@ public class no7576 {
         int N = sc.nextInt();
 
         int day = 0; //지난 날
+        int check = 0; //처음 토마토가 모두 익었는지 체크
         Queue<Tomato> q = new LinkedList<>();
 
         int[][] box = new int[N][M]; //토마토가 담긴 통(익음여부)
@@ -29,6 +30,7 @@ public class no7576 {
             for (int j = 0; j < M; j++) {
                 box[i][j] = sc.nextInt(); //각 자리의 토마토 익음 여부
                 if (box[i][j] == 1) q.add(new Tomato(i, j)); //토마토가 익었으면 큐에 추가
+                if (box[i][j] == 0) check ++;
             }
         }
 
@@ -54,9 +56,11 @@ public class no7576 {
 
         for (int i = 0; i < N; i++) { //모든 토마토가 안익었으면
             for (int j = 0; j < M; j++) {
-                if (box[i][j] == 0) day = -1; //day = -1
+                if (box[i][j] == 0) day = 0; //day = -1
             }
         }
+
+        if(check == 0) day = 1;
 
         System.out.println(day - 1); //익은 토마토 값으로 1부터 시작했기 때문에 1을 빼줌
 
